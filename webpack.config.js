@@ -1,3 +1,4 @@
+const path = require('path');
 module.exports = {
     entry: './core/main.js',
     output: {
@@ -5,21 +6,15 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.jsx?$/,
-            loader: 'babel-loader',
-            options: {
-                presets: [
-                    [
-                        '@babel/preset-env', {
-                            targets: {
-                                node: 'current'
-                            },
-                            modules: 'false'
-                        }
-                    ],
-                ],
-            },
-            exclude: ['/node_modules'],
+            test: /\.js$/,
+            include: path.join(__dirname),
+            exclude: /(node_modules)|(dist)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
         }, {
             test: /\.css$/,
             use: ['style-loader', 'css-loader'],
