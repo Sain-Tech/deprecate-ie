@@ -6,29 +6,33 @@ window.$ = $;
 
 // Alert for dialog
 const _alert = {
-    forcible: function(opt = {}) {
+    forcible: function (opt = {}) {
         _common.warn();
-        if(!checkBrowser()) {_common.info(); return;};
+        if (!checkBrowser()) { _common.info(); return; };
 
         // If browser is IE...
-        emptyContent();
-        let _title = "This webpage doesn't work at Internet Explorer";
-        let _message = "This webpage doesn't support Internet Explorer anymore.<br>Please open the browser based on chromium such as Chrome or Firefox.";
-        let _btnLabel = "Close";
-        
-        opt.title !== undefined && (_title = opt.title);
-        opt.msg !== undefined && (_message = opt.msg);
-        opt.btn !== undefined && (_btnLabel = opt.btn);
-        
-        const html = 
-        `<div class="alert forcible">
-            <header><h2 class="alert-title">${_title}</h2></header>
-            <div><p class="alert-message">${_message}</p></div>
-            <footer><button class="btn negative close-window">${_btnLabel}</button></footer>
-        </div>`;
+        const _tm = setInterval(() => {
+            emptyContent();
+            let _title = "This webpage doesn't work at Internet Explorer";
+            let _message = "This webpage doesn't support Internet Explorer anymore.<br>Please open the browser based on chromium such as Chrome or Firefox.";
+            let _btnLabel = "Close";
 
-        $(document.body).html(html);
-        $(document).on("click", ".close-window", closeWindow);
+            opt.title !== undefined && (_title = opt.title);
+            opt.msg !== undefined && (_message = opt.msg);
+            opt.btn !== undefined && (_btnLabel = opt.btn);
+
+            const html =
+            `<div class="alert forcible">
+                <header><h2 class="alert-title">${_title}</h2></header>
+                <div><p class="alert-message">${_message}</p></div>
+                <footer><button class="btn negative close-window">${_btnLabel}</button></footer>
+            </div>`;
+
+            $(document.body).html(html);
+            $(document).on("click", ".close-window", closeWindow);
+
+            if($(document.body).length > 0) clearInterval(_tm); 
+        }, 125);
     },
     
 }
