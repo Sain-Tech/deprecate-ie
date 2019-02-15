@@ -8,11 +8,11 @@ window.$ = $;
 const _alert = {
     forcible: function (opt = {}) {
         _common.warn();
-        if (!checkBrowser()) { _common.info(); return; };
+        if (!checkBrowser()) { _common.info(); _common.rmcss(); return; };
 
         // If browser is IE...
         const _tm = setInterval(() => {
-            emptyContent();
+            _common.empty();
             let _title = "This webpage doesn't work at Internet Explorer";
             let _message = "This webpage doesn't support Internet Explorer anymore.<br>Please open the browser based on chromium such as Chrome or Firefox.";
             let _btnLabel = "Close";
@@ -37,21 +37,13 @@ const _alert = {
     
 }
 
-// Main functions
+// Main functions objs.
 window.deprecateIE = {
     alert: _alert
 };
 
  /**
-   * <b>Empty all contents
-   * @instance
-   */
-const emptyContent = function() {
-    $(document.body).html('');
-};
-
- /**
-   * <b>Basic warning message
+   * <b>Basic messages and common functions, etc.
    * @instance
    */
 const _common = {
@@ -60,6 +52,14 @@ const _common = {
     },
     info: function() {
         console.info("This browser is passed!");
+    },
+    rmcss: function() {
+        $('style').each((idx, e) => { 
+            $(e).text().includes("/** Deprecate IE Style Sheet */") && $(e).detach();
+        })
+    },
+    empty: function() {
+        $(document.body).html('');
     }
 };
 
