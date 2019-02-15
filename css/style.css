@@ -2,6 +2,12 @@ head, body {
     font-family: Arial, Helvetica, sans-serif;
     padding: 8px;
     margin: 0;
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .alert {
@@ -9,6 +15,7 @@ head, body {
     border-radius: 16px;
     max-width: 480px;
     box-shadow: 2px 6px 16px 3px rgba(0,0,0,0.5);
+    cursor: default;
 }
 
 .forcible {
@@ -16,7 +23,6 @@ head, body {
 }
 
 .alert.forcible > header {
-    height: 48px;
     background: #cfd8dc;
     border-bottom: 1px solid #9ea7aa;
     border-radius: 16px 16px 0 0;
@@ -32,6 +38,7 @@ head, body {
     background: #eceff1;
     border-top: 1px solid #babdbe;
     border-radius: 0 0 16px 16px;
+    box-sizing: border-box;
     display: flex;
     justify-content: flex-end;
 }
@@ -52,8 +59,8 @@ head, body {
 
 .btn {
     border: 2px solid rgba(139, 139, 139, 0.612);
-    background: rgba(189, 189, 189, 0.878);
-    border-radius: 8px;
+    background: rgba(192, 192, 192, 0.87);
+    border-radius: 64px;
     min-width: 64px;
     min-height: 32px;
     color: #263238;
@@ -61,11 +68,32 @@ head, body {
     margin: 0 4px 0 4px;
     cursor: pointer;
     outline: none;
+    box-shadow: 0 0 0 0 rgba(0,0,0,0.5);
+    transition: all .25s
+}
+
+.btn:hover {
+    background: rgba(208, 208, 208, 1);
+    box-shadow: 1px 2px 8px 0.2px rgba(0,0,0,0.5);
+    transition: all .25s
+}
+
+.btn:active {
+    background: rgba(180, 180, 180, 1);
+    box-shadow: 0.5px 1px 3px 0.1px rgba(0,0,0,0.5);
+    transition: all .125s
 }
 
 .btn.neutral {
     background: rgba(176, 190, 197, 0.898);
-    
+}
+
+.btn.neutral:hover {
+    background: rgb(193, 208, 216);
+}
+
+.btn.neutral:active {
+    background: rgb(162, 175, 182);
 }
 
 .btn.positive {
@@ -73,7 +101,23 @@ head, body {
     color: #ffffff;
 }
 
+.btn.positive:hover {
+    background: rgb(54, 146, 58);
+}
+
+.btn.positive:active {
+    background: rgb(44, 119, 48);
+}
+
 .btn.negative {
     background: rgba(198, 40, 40, 0.898);
     color: #ffffff;
+}
+
+.btn.negative:hover {
+    background: rgb(210, 64, 64);
+}
+
+.btn.negative:active {
+    background: rgb(197, 40, 40);
 }
